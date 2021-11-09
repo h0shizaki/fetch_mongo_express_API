@@ -14,7 +14,7 @@ function getData(){
             trData += `<td>${member['last_name']}</td>`
             trData += `<td>${member['level']}</td>`
             trData += `<td><a class ='btn btn-warning' href='editMem.html?id=${member['id']}'>Edit</a></td>`
-            trData += `<td><button class='btn btn-danger' onclick='deleteData(${member['level']})'>Delete</button></td>`
+            trData += `<td><button class='btn btn-danger' onclick='delData(${member['id']})'>Delete</button></td>`
         })
 
         document.querySelector('#myTable').innerHTML = trData;
@@ -24,10 +24,11 @@ function getData(){
 }
 getData()
 
-async function deleteData(id){
-    let confirm = confirm('Want to delete? Are you sure?')
+async function delData(id){
+    console.log(id)
+    let confirmDel = confirm('Want to delete? Are you sure?')
 
-    if(confirm){
+    if(confirmDel){
         await fetch(API_URL+'delete' , {
             method: 'DELETE',
             headers: {'Content-Type' : 'application/json'},
